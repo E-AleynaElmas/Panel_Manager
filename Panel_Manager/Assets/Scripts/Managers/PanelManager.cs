@@ -9,8 +9,11 @@ public class PanelManager : Singleton<PanelManager>
 
     public void Show(PanelType type)
     {
-        var instance = panels.FirstOrDefault(obj => obj.name == type.ToString());
-        instance.ShowPanel();
+        ObjectPool.Instance.GetObjectFromPool(type);
     }
 
+    public void Hide(GameObject obj)
+    {
+        ObjectPool.Instance.PoolObject(obj);
+    }
 }

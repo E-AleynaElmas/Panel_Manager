@@ -6,6 +6,7 @@ public class HidePanelButton : MonoBehaviour
 {
     public void DoHidePanel()
     {
-        transform.parent.gameObject.SetActive(false);
+        PanelManager.Instance.Hide(transform.parent.gameObject);
+        ShowPanelButton.currentButton.SetActive();
     }
 }
