@@ -4,13 +4,23 @@ using UnityEngine;
 
 //Single responsible class
 //Object pool pattern
+//Resource Load For Scriptibleobject
+
 public class ObjectPool : Singleton<ObjectPool>
 {
-   public List<GameObject> PrefabsForPool;
-   public List<GameObject> pooledObjects = new List<GameObject>();
+    public List<GameObject> pooledObjects = new List<GameObject>();
 
-   public GameObject GetObjectFromPool(PanelType type)
-   {
+    private GameObject heyPanelPrefab;
+    private GameObject goodByePanelPrefab;
+    private List<GameObject> panelPrefabs = new List<GameObject>();
+
+    private void Start()
+    {
+        PanelPrefabsLoad();
+    }
+
+    public GameObject GetObjectFromPool(PanelType type)
+    {
         var instance = pooledObjects.FirstOrDefault(obj => obj.name == type.ToString());
         // poolda varsa
         if (instance != null)
@@ -18,28 +28,42 @@ public class ObjectPool : Singleton<ObjectPool>
             pooledObjects.Remove(instance);
             //açık olan panellerin altında kalmaması için
             instance.transform.SetAsLastSibling();
-            instance.SetActive(true);
             return instance;
         }
       
-      // poolda yoksa
-      var prefab = PrefabsForPool.FirstOrDefault(obj => obj.name == type.ToString());
-      if (prefab != null)
-      {
-         var newInstace = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
-         newInstace.name = type.ToString();
-         newInstace.transform.localPosition = Vector3.zero;
+        // poolda yoksa
+        var prefab = panelPrefabs.FirstOrDefault(obj => obj.name == type.ToString());
+        if (prefab != null)
+        {
+            var newInstace = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+            newInstace.name = type.ToString();
+            newInstace.transform.localPosition = Vector3.zero;
          
-         return newInstace;
-      }
+            return newInstace;
+        }
       
-      Debug.LogWarning("bu isimde prefab yok");
-      return null;
-   }
+        Debug.LogWarning("bu isimde prefab yok");
+        return null;
+    }
 
-   public void PoolObject(GameObject obj)
-   {
-      obj.SetActive(false);
-      pooledObjects.Add(obj);
-   }
+    public void PoolObject(GameObject obj)
+    {
+        pooledObjects.Add(obj);
+    }
+
+    //Resource Load
+    private void PanelPrefabsLoad()
+    {
+        if (heyPanelPrefab == null)
+        {
+            heyPanelPrefab = Resources.Load<GameObject>("Panels/HeyPanel");
+            panelPrefabs.Add(heyPanelPrefab);
+        }
+
+        if (goodByePanelPrefab == null)
+        {
+            goodByePanelPrefab = Resources.Load<GameObject>("Panels/GoodByePanel");
+            panelPrefabs.Add(goodByePanelPrefab);
+        }
+    }   
 }

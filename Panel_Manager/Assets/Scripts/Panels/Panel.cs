@@ -13,13 +13,14 @@ public class PanelData
     
 }
 
-public class Panel : MonoBehaviour
+public abstract class Panel : MonoBehaviour
 {
-    public void ShowPanel()
+    //single responsibility
+    public virtual void ShowPanel(PanelData data)
     {
         transform.gameObject.SetActive(true);
     }
-
+    //single responsibility
     public void HidePanel()
     {
         transform.gameObject.SetActive(false);

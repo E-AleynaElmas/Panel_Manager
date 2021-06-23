@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//singleton pattern for panel manager
 public class PanelManager : Singleton<PanelManager>
 {
-    public List<Panel> panels = new List<Panel>();
+    [SerializeField]
+    GameObject panelParent;
 
-    public void Show(PanelType type)
+    //Show whit panel type and panel data
+    public void Show(PanelType type, PanelData data)
     {
-        ObjectPool.Instance.GetObjectFromPool(type);
+        var instance = ObjectPool.Instance.GetObjectFromPool(type);
+        instance.GetComponent<Panel>().ShowPanel(data);
     }
 
     public void Hide(GameObject obj)
     {
         ObjectPool.Instance.PoolObject(obj);
     }
+
 }

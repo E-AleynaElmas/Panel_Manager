@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4848676400159129120}
   - component: {fileID: 4848676400159129121}
   - component: {fileID: 4848676400159129126}
-  - component: {fileID: 7183328272354187307}
+  - component: {fileID: 6446828565559939716}
   m_Layer: 5
   m_Name: HeyButton
   m_TagString: Untagged
@@ -119,19 +119,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4848676400159129121}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7183328272354187307}
-        m_MethodName: DoShowPanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7183328272354187307
+      m_Calls: []
+--- !u!114 &6446828565559939716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +129,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4848676400159129124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c5dba818b964144bd7b3917ade452d, type: 3}
+  m_Script: {fileID: 11500000, guid: c22c9ade6cf9b2940a238ef13060bfa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
 --- !u!1 &4848676401694413538
 GameObject:
   m_ObjectHideFlags: 0

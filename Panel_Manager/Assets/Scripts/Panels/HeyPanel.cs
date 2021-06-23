@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HeyPanelData : PanelData
 {
-    string Name;
+    public string Name;
 }
 
 public class HeyPanel : Panel
@@ -14,4 +14,12 @@ public class HeyPanel : Panel
     public PanelType Type;
     public Text NameText;
     HeyPanelData Data;
+
+    public override void ShowPanel(PanelData data)
+    {
+        base.ShowPanel(data);
+        var _data = data as HeyPanelData;
+        Data = _data;
+        NameText.text = Data.Name;
+    }
 }
